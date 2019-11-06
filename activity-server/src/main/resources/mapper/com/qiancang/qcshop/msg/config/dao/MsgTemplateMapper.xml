@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiancang.qcshop.msg.config.dao.MsgTemplateMapper">
+  <resultMap id="BaseResultMap" type="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="msg_type_code" jdbcType="VARCHAR" property="msgTypeCode" />
+    <result column="msg_type_name" jdbcType="VARCHAR" property="msgTypeName" />
+    <result column="send_sms" jdbcType="TINYINT" property="sendSms" />
+    <result column="app_push" jdbcType="TINYINT" property="appPush" />
+    <result column="applet_msg" jdbcType="TINYINT" property="appletMsg" />
+    <result column="station_letter" jdbcType="TINYINT" property="stationLetter" />
+    <result column="config_indicator" jdbcType="VARCHAR" property="configIndicator" />
+    <result column="ali_sms_template_id" jdbcType="VARCHAR" property="aliSmsTemplateId" />
+    <result column="tx_sms_template_id" jdbcType="VARCHAR" property="txSmsTemplateId" />
+    <result column="applet_template_id" jdbcType="VARCHAR" property="appletTemplateId" />
+    <result column="applet_redirect_page" jdbcType="VARCHAR" property="appletRedirectPage" />
+    <result column="msg_subject" jdbcType="VARCHAR" property="msgSubject" />
+    <result column="msg_content" jdbcType="VARCHAR" property="msgContent" />
+    <result column="promote_sms" jdbcType="TINYINT" property="promoteSms" />
+    <result column="promote_sms_content" jdbcType="VARCHAR" property="promoteSmsContent" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="template_type" jdbcType="TINYINT" property="templateType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="deleted" jdbcType="TINYINT" property="deleted" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    <result column="jump_info" jdbcType="LONGVARCHAR" property="jumpInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, msg_type_code, msg_type_name, send_sms, app_push, applet_msg, station_letter, 
+    config_indicator, ali_sms_template_id, tx_sms_template_id, applet_template_id, applet_redirect_page, 
+    msg_subject, msg_content, promote_sms, promote_sms_content, remark, template_type, 
+    create_time, update_time, version, deleted
+  </sql>
+  <sql id="Blob_Column_List">
+    jump_info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_template
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from msg_template
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    insert into msg_template (id, msg_type_code, msg_type_name, 
+      send_sms, app_push, applet_msg, 
+      station_letter, config_indicator, ali_sms_template_id, 
+      tx_sms_template_id, applet_template_id, applet_redirect_page, 
+      msg_subject, msg_content, promote_sms, 
+      promote_sms_content, remark, template_type, 
+      create_time, update_time, version, 
+      deleted, jump_info)
+    values (#{id,jdbcType=BIGINT}, #{msgTypeCode,jdbcType=VARCHAR}, #{msgTypeName,jdbcType=VARCHAR}, 
+      #{sendSms,jdbcType=TINYINT}, #{appPush,jdbcType=TINYINT}, #{appletMsg,jdbcType=TINYINT}, 
+      #{stationLetter,jdbcType=TINYINT}, #{configIndicator,jdbcType=VARCHAR}, #{aliSmsTemplateId,jdbcType=VARCHAR}, 
+      #{txSmsTemplateId,jdbcType=VARCHAR}, #{appletTemplateId,jdbcType=VARCHAR}, #{appletRedirectPage,jdbcType=VARCHAR}, 
+      #{msgSubject,jdbcType=VARCHAR}, #{msgContent,jdbcType=VARCHAR}, #{promoteSms,jdbcType=TINYINT}, 
+      #{promoteSmsContent,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{templateType,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, 
+      #{deleted,jdbcType=TINYINT}, #{jumpInfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    insert into msg_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="msgTypeCode != null">
+        msg_type_code,
+      </if>
+      <if test="msgTypeName != null">
+        msg_type_name,
+      </if>
+      <if test="sendSms != null">
+        send_sms,
+      </if>
+      <if test="appPush != null">
+        app_push,
+      </if>
+      <if test="appletMsg != null">
+        applet_msg,
+      </if>
+      <if test="stationLetter != null">
+        station_letter,
+      </if>
+      <if test="configIndicator != null">
+        config_indicator,
+      </if>
+      <if test="aliSmsTemplateId != null">
+        ali_sms_template_id,
+      </if>
+      <if test="txSmsTemplateId != null">
+        tx_sms_template_id,
+      </if>
+      <if test="appletTemplateId != null">
+        applet_template_id,
+      </if>
+      <if test="appletRedirectPage != null">
+        applet_redirect_page,
+      </if>
+      <if test="msgSubject != null">
+        msg_subject,
+      </if>
+      <if test="msgContent != null">
+        msg_content,
+      </if>
+      <if test="promoteSms != null">
+        promote_sms,
+      </if>
+      <if test="promoteSmsContent != null">
+        promote_sms_content,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="templateType != null">
+        template_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="jumpInfo != null">
+        jump_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="msgTypeCode != null">
+        #{msgTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTypeName != null">
+        #{msgTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendSms != null">
+        #{sendSms,jdbcType=TINYINT},
+      </if>
+      <if test="appPush != null">
+        #{appPush,jdbcType=TINYINT},
+      </if>
+      <if test="appletMsg != null">
+        #{appletMsg,jdbcType=TINYINT},
+      </if>
+      <if test="stationLetter != null">
+        #{stationLetter,jdbcType=TINYINT},
+      </if>
+      <if test="configIndicator != null">
+        #{configIndicator,jdbcType=VARCHAR},
+      </if>
+      <if test="aliSmsTemplateId != null">
+        #{aliSmsTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="txSmsTemplateId != null">
+        #{txSmsTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="appletTemplateId != null">
+        #{appletTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="appletRedirectPage != null">
+        #{appletRedirectPage,jdbcType=VARCHAR},
+      </if>
+      <if test="msgSubject != null">
+        #{msgSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="msgContent != null">
+        #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="promoteSms != null">
+        #{promoteSms,jdbcType=TINYINT},
+      </if>
+      <if test="promoteSmsContent != null">
+        #{promoteSmsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="templateType != null">
+        #{templateType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="jumpInfo != null">
+        #{jumpInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    update msg_template
+    <set>
+      <if test="msgTypeCode != null">
+        msg_type_code = #{msgTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTypeName != null">
+        msg_type_name = #{msgTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendSms != null">
+        send_sms = #{sendSms,jdbcType=TINYINT},
+      </if>
+      <if test="appPush != null">
+        app_push = #{appPush,jdbcType=TINYINT},
+      </if>
+      <if test="appletMsg != null">
+        applet_msg = #{appletMsg,jdbcType=TINYINT},
+      </if>
+      <if test="stationLetter != null">
+        station_letter = #{stationLetter,jdbcType=TINYINT},
+      </if>
+      <if test="configIndicator != null">
+        config_indicator = #{configIndicator,jdbcType=VARCHAR},
+      </if>
+      <if test="aliSmsTemplateId != null">
+        ali_sms_template_id = #{aliSmsTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="txSmsTemplateId != null">
+        tx_sms_template_id = #{txSmsTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="appletTemplateId != null">
+        applet_template_id = #{appletTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="appletRedirectPage != null">
+        applet_redirect_page = #{appletRedirectPage,jdbcType=VARCHAR},
+      </if>
+      <if test="msgSubject != null">
+        msg_subject = #{msgSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="msgContent != null">
+        msg_content = #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="promoteSms != null">
+        promote_sms = #{promoteSms,jdbcType=TINYINT},
+      </if>
+      <if test="promoteSmsContent != null">
+        promote_sms_content = #{promoteSmsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="templateType != null">
+        template_type = #{templateType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="jumpInfo != null">
+        jump_info = #{jumpInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    update msg_template
+    set msg_type_code = #{msgTypeCode,jdbcType=VARCHAR},
+      msg_type_name = #{msgTypeName,jdbcType=VARCHAR},
+      send_sms = #{sendSms,jdbcType=TINYINT},
+      app_push = #{appPush,jdbcType=TINYINT},
+      applet_msg = #{appletMsg,jdbcType=TINYINT},
+      station_letter = #{stationLetter,jdbcType=TINYINT},
+      config_indicator = #{configIndicator,jdbcType=VARCHAR},
+      ali_sms_template_id = #{aliSmsTemplateId,jdbcType=VARCHAR},
+      tx_sms_template_id = #{txSmsTemplateId,jdbcType=VARCHAR},
+      applet_template_id = #{appletTemplateId,jdbcType=VARCHAR},
+      applet_redirect_page = #{appletRedirectPage,jdbcType=VARCHAR},
+      msg_subject = #{msgSubject,jdbcType=VARCHAR},
+      msg_content = #{msgContent,jdbcType=VARCHAR},
+      promote_sms = #{promoteSms,jdbcType=TINYINT},
+      promote_sms_content = #{promoteSmsContent,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      template_type = #{templateType,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=TINYINT},
+      jump_info = #{jumpInfo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    update msg_template
+    set msg_type_code = #{msgTypeCode,jdbcType=VARCHAR},
+      msg_type_name = #{msgTypeName,jdbcType=VARCHAR},
+      send_sms = #{sendSms,jdbcType=TINYINT},
+      app_push = #{appPush,jdbcType=TINYINT},
+      applet_msg = #{appletMsg,jdbcType=TINYINT},
+      station_letter = #{stationLetter,jdbcType=TINYINT},
+      config_indicator = #{configIndicator,jdbcType=VARCHAR},
+      ali_sms_template_id = #{aliSmsTemplateId,jdbcType=VARCHAR},
+      tx_sms_template_id = #{txSmsTemplateId,jdbcType=VARCHAR},
+      applet_template_id = #{appletTemplateId,jdbcType=VARCHAR},
+      applet_redirect_page = #{appletRedirectPage,jdbcType=VARCHAR},
+      msg_subject = #{msgSubject,jdbcType=VARCHAR},
+      msg_content = #{msgContent,jdbcType=VARCHAR},
+      promote_sms = #{promoteSms,jdbcType=TINYINT},
+      promote_sms_content = #{promoteSmsContent,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      template_type = #{templateType,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="msg_type_code" jdbcType="VARCHAR" property="msgTypeCode" />
+    <result column="msg_type_name" jdbcType="VARCHAR" property="msgTypeName" />
+    <result column="send_sms" jdbcType="TINYINT" property="sendSms" />
+    <result column="app_push" jdbcType="TINYINT" property="appPush" />
+    <result column="applet_msg" jdbcType="TINYINT" property="appletMsg" />
+    <result column="station_letter" jdbcType="TINYINT" property="stationLetter" />
+    <result column="config_indicator" jdbcType="VARCHAR" property="configIndicator" />
+    <result column="ali_sms_template_id" jdbcType="VARCHAR" property="aliSmsTemplateId" />
+    <result column="tx_sms_template_id" jdbcType="VARCHAR" property="txSmsTemplateId" />
+    <result column="applet_template_id" jdbcType="VARCHAR" property="appletTemplateId" />
+    <result column="applet_redirect_page" jdbcType="VARCHAR" property="appletRedirectPage" />
+    <result column="msg_subject" jdbcType="VARCHAR" property="msgSubject" />
+    <result column="msg_content" jdbcType="VARCHAR" property="msgContent" />
+    <result column="promote_sms" jdbcType="TINYINT" property="promoteSms" />
+    <result column="promote_sms_content" jdbcType="VARCHAR" property="promoteSmsContent" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="template_type" jdbcType="TINYINT" property="templateType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="deleted" jdbcType="TINYINT" property="deleted" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    <result column="jump_info" jdbcType="LONGVARCHAR" property="jumpInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, msg_type_code, msg_type_name, send_sms, app_push, applet_msg, station_letter, 
+    config_indicator, ali_sms_template_id, tx_sms_template_id, applet_template_id, applet_redirect_page, 
+    msg_subject, msg_content, promote_sms, promote_sms_content, remark, template_type, 
+    create_time, update_time, version, deleted
+  </sql>
+  <sql id="Blob_Column_List">
+    jump_info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_template
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from msg_template
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    insert into msg_template (id, msg_type_code, msg_type_name, 
+      send_sms, app_push, applet_msg, 
+      station_letter, config_indicator, ali_sms_template_id, 
+      tx_sms_template_id, applet_template_id, applet_redirect_page, 
+      msg_subject, msg_content, promote_sms, 
+      promote_sms_content, remark, template_type, 
+      create_time, update_time, version, 
+      deleted, jump_info)
+    values (#{id,jdbcType=BIGINT}, #{msgTypeCode,jdbcType=VARCHAR}, #{msgTypeName,jdbcType=VARCHAR}, 
+      #{sendSms,jdbcType=TINYINT}, #{appPush,jdbcType=TINYINT}, #{appletMsg,jdbcType=TINYINT}, 
+      #{stationLetter,jdbcType=TINYINT}, #{configIndicator,jdbcType=VARCHAR}, #{aliSmsTemplateId,jdbcType=VARCHAR}, 
+      #{txSmsTemplateId,jdbcType=VARCHAR}, #{appletTemplateId,jdbcType=VARCHAR}, #{appletRedirectPage,jdbcType=VARCHAR}, 
+      #{msgSubject,jdbcType=VARCHAR}, #{msgContent,jdbcType=VARCHAR}, #{promoteSms,jdbcType=TINYINT}, 
+      #{promoteSmsContent,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{templateType,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, 
+      #{deleted,jdbcType=TINYINT}, #{jumpInfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    insert into msg_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="msgTypeCode != null">
+        msg_type_code,
+      </if>
+      <if test="msgTypeName != null">
+        msg_type_name,
+      </if>
+      <if test="sendSms != null">
+        send_sms,
+      </if>
+      <if test="appPush != null">
+        app_push,
+      </if>
+      <if test="appletMsg != null">
+        applet_msg,
+      </if>
+      <if test="stationLetter != null">
+        station_letter,
+      </if>
+      <if test="configIndicator != null">
+        config_indicator,
+      </if>
+      <if test="aliSmsTemplateId != null">
+        ali_sms_template_id,
+      </if>
+      <if test="txSmsTemplateId != null">
+        tx_sms_template_id,
+      </if>
+      <if test="appletTemplateId != null">
+        applet_template_id,
+      </if>
+      <if test="appletRedirectPage != null">
+        applet_redirect_page,
+      </if>
+      <if test="msgSubject != null">
+        msg_subject,
+      </if>
+      <if test="msgContent != null">
+        msg_content,
+      </if>
+      <if test="promoteSms != null">
+        promote_sms,
+      </if>
+      <if test="promoteSmsContent != null">
+        promote_sms_content,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="templateType != null">
+        template_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="jumpInfo != null">
+        jump_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="msgTypeCode != null">
+        #{msgTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTypeName != null">
+        #{msgTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendSms != null">
+        #{sendSms,jdbcType=TINYINT},
+      </if>
+      <if test="appPush != null">
+        #{appPush,jdbcType=TINYINT},
+      </if>
+      <if test="appletMsg != null">
+        #{appletMsg,jdbcType=TINYINT},
+      </if>
+      <if test="stationLetter != null">
+        #{stationLetter,jdbcType=TINYINT},
+      </if>
+      <if test="configIndicator != null">
+        #{configIndicator,jdbcType=VARCHAR},
+      </if>
+      <if test="aliSmsTemplateId != null">
+        #{aliSmsTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="txSmsTemplateId != null">
+        #{txSmsTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="appletTemplateId != null">
+        #{appletTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="appletRedirectPage != null">
+        #{appletRedirectPage,jdbcType=VARCHAR},
+      </if>
+      <if test="msgSubject != null">
+        #{msgSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="msgContent != null">
+        #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="promoteSms != null">
+        #{promoteSms,jdbcType=TINYINT},
+      </if>
+      <if test="promoteSmsContent != null">
+        #{promoteSmsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="templateType != null">
+        #{templateType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="jumpInfo != null">
+        #{jumpInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    update msg_template
+    <set>
+      <if test="msgTypeCode != null">
+        msg_type_code = #{msgTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTypeName != null">
+        msg_type_name = #{msgTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendSms != null">
+        send_sms = #{sendSms,jdbcType=TINYINT},
+      </if>
+      <if test="appPush != null">
+        app_push = #{appPush,jdbcType=TINYINT},
+      </if>
+      <if test="appletMsg != null">
+        applet_msg = #{appletMsg,jdbcType=TINYINT},
+      </if>
+      <if test="stationLetter != null">
+        station_letter = #{stationLetter,jdbcType=TINYINT},
+      </if>
+      <if test="configIndicator != null">
+        config_indicator = #{configIndicator,jdbcType=VARCHAR},
+      </if>
+      <if test="aliSmsTemplateId != null">
+        ali_sms_template_id = #{aliSmsTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="txSmsTemplateId != null">
+        tx_sms_template_id = #{txSmsTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="appletTemplateId != null">
+        applet_template_id = #{appletTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="appletRedirectPage != null">
+        applet_redirect_page = #{appletRedirectPage,jdbcType=VARCHAR},
+      </if>
+      <if test="msgSubject != null">
+        msg_subject = #{msgSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="msgContent != null">
+        msg_content = #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="promoteSms != null">
+        promote_sms = #{promoteSms,jdbcType=TINYINT},
+      </if>
+      <if test="promoteSmsContent != null">
+        promote_sms_content = #{promoteSmsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="templateType != null">
+        template_type = #{templateType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="jumpInfo != null">
+        jump_info = #{jumpInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    update msg_template
+    set msg_type_code = #{msgTypeCode,jdbcType=VARCHAR},
+      msg_type_name = #{msgTypeName,jdbcType=VARCHAR},
+      send_sms = #{sendSms,jdbcType=TINYINT},
+      app_push = #{appPush,jdbcType=TINYINT},
+      applet_msg = #{appletMsg,jdbcType=TINYINT},
+      station_letter = #{stationLetter,jdbcType=TINYINT},
+      config_indicator = #{configIndicator,jdbcType=VARCHAR},
+      ali_sms_template_id = #{aliSmsTemplateId,jdbcType=VARCHAR},
+      tx_sms_template_id = #{txSmsTemplateId,jdbcType=VARCHAR},
+      applet_template_id = #{appletTemplateId,jdbcType=VARCHAR},
+      applet_redirect_page = #{appletRedirectPage,jdbcType=VARCHAR},
+      msg_subject = #{msgSubject,jdbcType=VARCHAR},
+      msg_content = #{msgContent,jdbcType=VARCHAR},
+      promote_sms = #{promoteSms,jdbcType=TINYINT},
+      promote_sms_content = #{promoteSmsContent,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      template_type = #{templateType,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=TINYINT},
+      jump_info = #{jumpInfo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    update msg_template
+    set msg_type_code = #{msgTypeCode,jdbcType=VARCHAR},
+      msg_type_name = #{msgTypeName,jdbcType=VARCHAR},
+      send_sms = #{sendSms,jdbcType=TINYINT},
+      app_push = #{appPush,jdbcType=TINYINT},
+      applet_msg = #{appletMsg,jdbcType=TINYINT},
+      station_letter = #{stationLetter,jdbcType=TINYINT},
+      config_indicator = #{configIndicator,jdbcType=VARCHAR},
+      ali_sms_template_id = #{aliSmsTemplateId,jdbcType=VARCHAR},
+      tx_sms_template_id = #{txSmsTemplateId,jdbcType=VARCHAR},
+      applet_template_id = #{appletTemplateId,jdbcType=VARCHAR},
+      applet_redirect_page = #{appletRedirectPage,jdbcType=VARCHAR},
+      msg_subject = #{msgSubject,jdbcType=VARCHAR},
+      msg_content = #{msgContent,jdbcType=VARCHAR},
+      promote_sms = #{promoteSms,jdbcType=TINYINT},
+      promote_sms_content = #{promoteSmsContent,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      template_type = #{templateType,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="msg_type_code" jdbcType="VARCHAR" property="msgTypeCode" />
+    <result column="msg_type_name" jdbcType="VARCHAR" property="msgTypeName" />
+    <result column="send_sms" jdbcType="TINYINT" property="sendSms" />
+    <result column="app_push" jdbcType="TINYINT" property="appPush" />
+    <result column="applet_msg" jdbcType="TINYINT" property="appletMsg" />
+    <result column="station_letter" jdbcType="TINYINT" property="stationLetter" />
+    <result column="ali_sms_template_id" jdbcType="VARCHAR" property="aliSmsTemplateId" />
+    <result column="tx_sms_template_id" jdbcType="VARCHAR" property="txSmsTemplateId" />
+    <result column="msg_subject" jdbcType="VARCHAR" property="msgSubject" />
+    <result column="msg_content" jdbcType="VARCHAR" property="msgContent" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="template_type" jdbcType="TINYINT" property="templateType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, msg_type_code, msg_type_name, send_sms, app_push, applet_msg, station_letter, 
+    ali_sms_template_id, tx_sms_template_id, msg_subject, msg_content, remark, template_type, 
+    create_time, update_time, version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from msg_template
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from msg_template
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    insert into msg_template (id, msg_type_code, msg_type_name, 
+      send_sms, app_push, applet_msg, 
+      station_letter, ali_sms_template_id, tx_sms_template_id, 
+      msg_subject, msg_content, remark, 
+      template_type, create_time, update_time, 
+      version)
+    values (#{id,jdbcType=BIGINT}, #{msgTypeCode,jdbcType=VARCHAR}, #{msgTypeName,jdbcType=VARCHAR}, 
+      #{sendSms,jdbcType=TINYINT}, #{appPush,jdbcType=TINYINT}, #{appletMsg,jdbcType=TINYINT}, 
+      #{stationLetter,jdbcType=TINYINT}, #{aliSmsTemplateId,jdbcType=VARCHAR}, #{txSmsTemplateId,jdbcType=VARCHAR}, 
+      #{msgSubject,jdbcType=VARCHAR}, #{msgContent,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{templateType,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    insert into msg_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="msgTypeCode != null">
+        msg_type_code,
+      </if>
+      <if test="msgTypeName != null">
+        msg_type_name,
+      </if>
+      <if test="sendSms != null">
+        send_sms,
+      </if>
+      <if test="appPush != null">
+        app_push,
+      </if>
+      <if test="appletMsg != null">
+        applet_msg,
+      </if>
+      <if test="stationLetter != null">
+        station_letter,
+      </if>
+      <if test="aliSmsTemplateId != null">
+        ali_sms_template_id,
+      </if>
+      <if test="txSmsTemplateId != null">
+        tx_sms_template_id,
+      </if>
+      <if test="msgSubject != null">
+        msg_subject,
+      </if>
+      <if test="msgContent != null">
+        msg_content,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="templateType != null">
+        template_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="msgTypeCode != null">
+        #{msgTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTypeName != null">
+        #{msgTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendSms != null">
+        #{sendSms,jdbcType=TINYINT},
+      </if>
+      <if test="appPush != null">
+        #{appPush,jdbcType=TINYINT},
+      </if>
+      <if test="appletMsg != null">
+        #{appletMsg,jdbcType=TINYINT},
+      </if>
+      <if test="stationLetter != null">
+        #{stationLetter,jdbcType=TINYINT},
+      </if>
+      <if test="aliSmsTemplateId != null">
+        #{aliSmsTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="txSmsTemplateId != null">
+        #{txSmsTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgSubject != null">
+        #{msgSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="msgContent != null">
+        #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="templateType != null">
+        #{templateType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    update msg_template
+    <set>
+      <if test="msgTypeCode != null">
+        msg_type_code = #{msgTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTypeName != null">
+        msg_type_name = #{msgTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendSms != null">
+        send_sms = #{sendSms,jdbcType=TINYINT},
+      </if>
+      <if test="appPush != null">
+        app_push = #{appPush,jdbcType=TINYINT},
+      </if>
+      <if test="appletMsg != null">
+        applet_msg = #{appletMsg,jdbcType=TINYINT},
+      </if>
+      <if test="stationLetter != null">
+        station_letter = #{stationLetter,jdbcType=TINYINT},
+      </if>
+      <if test="aliSmsTemplateId != null">
+        ali_sms_template_id = #{aliSmsTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="txSmsTemplateId != null">
+        tx_sms_template_id = #{txSmsTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgSubject != null">
+        msg_subject = #{msgSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="msgContent != null">
+        msg_content = #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="templateType != null">
+        template_type = #{templateType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplate">
+    update msg_template
+    set msg_type_code = #{msgTypeCode,jdbcType=VARCHAR},
+      msg_type_name = #{msgTypeName,jdbcType=VARCHAR},
+      send_sms = #{sendSms,jdbcType=TINYINT},
+      app_push = #{appPush,jdbcType=TINYINT},
+      applet_msg = #{appletMsg,jdbcType=TINYINT},
+      station_letter = #{stationLetter,jdbcType=TINYINT},
+      ali_sms_template_id = #{aliSmsTemplateId,jdbcType=VARCHAR},
+      tx_sms_template_id = #{txSmsTemplateId,jdbcType=VARCHAR},
+      msg_subject = #{msgSubject,jdbcType=VARCHAR},
+      msg_content = #{msgContent,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      template_type = #{templateType,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

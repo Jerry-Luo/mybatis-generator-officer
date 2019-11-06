@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiancang.qcshop.msg.config.dao.MsgTemplateVariableMapper">
+  <resultMap id="BaseResultMap" type="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="msg_type_code" jdbcType="VARCHAR" property="msgTypeCode" />
+    <result column="variable_name" jdbcType="VARCHAR" property="variableName" />
+    <result column="variable_key" jdbcType="VARCHAR" property="variableKey" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, msg_type_code, variable_name, variable_key, create_time, update_time, version, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from msg_template_variable
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from msg_template_variable
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    insert into msg_template_variable (id, msg_type_code, variable_name, 
+      variable_key, create_time, update_time, 
+      version, remark)
+    values (#{id,jdbcType=BIGINT}, #{msgTypeCode,jdbcType=VARCHAR}, #{variableName,jdbcType=VARCHAR}, 
+      #{variableKey,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{version,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    insert into msg_template_variable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="msgTypeCode != null">
+        msg_type_code,
+      </if>
+      <if test="variableName != null">
+        variable_name,
+      </if>
+      <if test="variableKey != null">
+        variable_key,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="msgTypeCode != null">
+        #{msgTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="variableName != null">
+        #{variableName,jdbcType=VARCHAR},
+      </if>
+      <if test="variableKey != null">
+        #{variableKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    update msg_template_variable
+    <set>
+      <if test="msgTypeCode != null">
+        msg_type_code = #{msgTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="variableName != null">
+        variable_name = #{variableName,jdbcType=VARCHAR},
+      </if>
+      <if test="variableKey != null">
+        variable_key = #{variableKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    update msg_template_variable
+    set msg_type_code = #{msgTypeCode,jdbcType=VARCHAR},
+      variable_name = #{variableName,jdbcType=VARCHAR},
+      variable_key = #{variableKey,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="msg_type_code" jdbcType="VARCHAR" property="msgTypeCode" />
+    <result column="variable_name" jdbcType="VARCHAR" property="variableName" />
+    <result column="variable_key" jdbcType="VARCHAR" property="variableKey" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, msg_type_code, variable_name, variable_key, create_time, update_time, version, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from msg_template_variable
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from msg_template_variable
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    insert into msg_template_variable (id, msg_type_code, variable_name, 
+      variable_key, create_time, update_time, 
+      version, remark)
+    values (#{id,jdbcType=BIGINT}, #{msgTypeCode,jdbcType=VARCHAR}, #{variableName,jdbcType=VARCHAR}, 
+      #{variableKey,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{version,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    insert into msg_template_variable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="msgTypeCode != null">
+        msg_type_code,
+      </if>
+      <if test="variableName != null">
+        variable_name,
+      </if>
+      <if test="variableKey != null">
+        variable_key,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="msgTypeCode != null">
+        #{msgTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="variableName != null">
+        #{variableName,jdbcType=VARCHAR},
+      </if>
+      <if test="variableKey != null">
+        #{variableKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    update msg_template_variable
+    <set>
+      <if test="msgTypeCode != null">
+        msg_type_code = #{msgTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="variableName != null">
+        variable_name = #{variableName,jdbcType=VARCHAR},
+      </if>
+      <if test="variableKey != null">
+        variable_key = #{variableKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    update msg_template_variable
+    set msg_type_code = #{msgTypeCode,jdbcType=VARCHAR},
+      variable_name = #{variableName,jdbcType=VARCHAR},
+      variable_key = #{variableKey,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="msg_type_code" jdbcType="VARCHAR" property="msgTypeCode" />
+    <result column="variable_name" jdbcType="VARCHAR" property="variableName" />
+    <result column="variable_key" jdbcType="VARCHAR" property="variableKey" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, msg_type_code, variable_name, variable_key, create_time, update_time, version, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from msg_template_variable
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from msg_template_variable
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    insert into msg_template_variable (id, msg_type_code, variable_name, 
+      variable_key, create_time, update_time, 
+      version, remark)
+    values (#{id,jdbcType=BIGINT}, #{msgTypeCode,jdbcType=VARCHAR}, #{variableName,jdbcType=VARCHAR}, 
+      #{variableKey,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{version,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    insert into msg_template_variable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="msgTypeCode != null">
+        msg_type_code,
+      </if>
+      <if test="variableName != null">
+        variable_name,
+      </if>
+      <if test="variableKey != null">
+        variable_key,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="msgTypeCode != null">
+        #{msgTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="variableName != null">
+        #{variableName,jdbcType=VARCHAR},
+      </if>
+      <if test="variableKey != null">
+        #{variableKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    update msg_template_variable
+    <set>
+      <if test="msgTypeCode != null">
+        msg_type_code = #{msgTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="variableName != null">
+        variable_name = #{variableName,jdbcType=VARCHAR},
+      </if>
+      <if test="variableKey != null">
+        variable_key = #{variableKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiancang.qcshop.msg.config.model.MsgTemplateVariable">
+    update msg_template_variable
+    set msg_type_code = #{msgTypeCode,jdbcType=VARCHAR},
+      variable_name = #{variableName,jdbcType=VARCHAR},
+      variable_key = #{variableKey,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

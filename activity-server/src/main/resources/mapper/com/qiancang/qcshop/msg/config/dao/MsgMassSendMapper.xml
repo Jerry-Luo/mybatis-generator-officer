@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiancang.qcshop.msg.config.dao.MsgMassSendMapper">
+  <resultMap id="BaseResultMap" type="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="send_type" jdbcType="TINYINT" property="sendType" />
+    <result column="template_code" jdbcType="VARCHAR" property="templateCode" />
+    <result column="push_time" jdbcType="TIMESTAMP" property="pushTime" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="jump_no" jdbcType="INTEGER" property="jumpNo" />
+    <result column="jump_id" jdbcType="INTEGER" property="jumpId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    <result column="target_user_phone" jdbcType="LONGVARCHAR" property="targetUserPhone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, send_type, template_code, push_time, url, type, jump_no, jump_id, create_time, 
+    update_time, version, remark
+  </sql>
+  <sql id="Blob_Column_List">
+    target_user_phone
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_mass_send
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from msg_mass_send
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    insert into msg_mass_send (id, send_type, template_code, 
+      push_time, url, type, 
+      jump_no, jump_id, create_time, 
+      update_time, version, remark, 
+      target_user_phone)
+    values (#{id,jdbcType=BIGINT}, #{sendType,jdbcType=TINYINT}, #{templateCode,jdbcType=VARCHAR}, 
+      #{pushTime,jdbcType=TIMESTAMP}, #{url,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, 
+      #{jumpNo,jdbcType=INTEGER}, #{jumpId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{targetUserPhone,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    insert into msg_mass_send
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sendType != null">
+        send_type,
+      </if>
+      <if test="templateCode != null">
+        template_code,
+      </if>
+      <if test="pushTime != null">
+        push_time,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="jumpNo != null">
+        jump_no,
+      </if>
+      <if test="jumpId != null">
+        jump_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="targetUserPhone != null">
+        target_user_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sendType != null">
+        #{sendType,jdbcType=TINYINT},
+      </if>
+      <if test="templateCode != null">
+        #{templateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pushTime != null">
+        #{pushTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="jumpNo != null">
+        #{jumpNo,jdbcType=INTEGER},
+      </if>
+      <if test="jumpId != null">
+        #{jumpId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUserPhone != null">
+        #{targetUserPhone,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    update msg_mass_send
+    <set>
+      <if test="sendType != null">
+        send_type = #{sendType,jdbcType=TINYINT},
+      </if>
+      <if test="templateCode != null">
+        template_code = #{templateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pushTime != null">
+        push_time = #{pushTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="jumpNo != null">
+        jump_no = #{jumpNo,jdbcType=INTEGER},
+      </if>
+      <if test="jumpId != null">
+        jump_id = #{jumpId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUserPhone != null">
+        target_user_phone = #{targetUserPhone,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    update msg_mass_send
+    set send_type = #{sendType,jdbcType=TINYINT},
+      template_code = #{templateCode,jdbcType=VARCHAR},
+      push_time = #{pushTime,jdbcType=TIMESTAMP},
+      url = #{url,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      jump_no = #{jumpNo,jdbcType=INTEGER},
+      jump_id = #{jumpId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      target_user_phone = #{targetUserPhone,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    update msg_mass_send
+    set send_type = #{sendType,jdbcType=TINYINT},
+      template_code = #{templateCode,jdbcType=VARCHAR},
+      push_time = #{pushTime,jdbcType=TIMESTAMP},
+      url = #{url,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      jump_no = #{jumpNo,jdbcType=INTEGER},
+      jump_id = #{jumpId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="send_type" jdbcType="TINYINT" property="sendType" />
+    <result column="template_code" jdbcType="VARCHAR" property="templateCode" />
+    <result column="push_time" jdbcType="TIMESTAMP" property="pushTime" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="jump_no" jdbcType="INTEGER" property="jumpNo" />
+    <result column="jump_id" jdbcType="INTEGER" property="jumpId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    <result column="target_user_phone" jdbcType="LONGVARCHAR" property="targetUserPhone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, send_type, template_code, push_time, url, type, jump_no, jump_id, create_time, 
+    update_time, version, remark
+  </sql>
+  <sql id="Blob_Column_List">
+    target_user_phone
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_mass_send
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from msg_mass_send
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    insert into msg_mass_send (id, send_type, template_code, 
+      push_time, url, type, 
+      jump_no, jump_id, create_time, 
+      update_time, version, remark, 
+      target_user_phone)
+    values (#{id,jdbcType=BIGINT}, #{sendType,jdbcType=TINYINT}, #{templateCode,jdbcType=VARCHAR}, 
+      #{pushTime,jdbcType=TIMESTAMP}, #{url,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, 
+      #{jumpNo,jdbcType=INTEGER}, #{jumpId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{targetUserPhone,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    insert into msg_mass_send
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sendType != null">
+        send_type,
+      </if>
+      <if test="templateCode != null">
+        template_code,
+      </if>
+      <if test="pushTime != null">
+        push_time,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="jumpNo != null">
+        jump_no,
+      </if>
+      <if test="jumpId != null">
+        jump_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="targetUserPhone != null">
+        target_user_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sendType != null">
+        #{sendType,jdbcType=TINYINT},
+      </if>
+      <if test="templateCode != null">
+        #{templateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pushTime != null">
+        #{pushTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="jumpNo != null">
+        #{jumpNo,jdbcType=INTEGER},
+      </if>
+      <if test="jumpId != null">
+        #{jumpId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUserPhone != null">
+        #{targetUserPhone,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    update msg_mass_send
+    <set>
+      <if test="sendType != null">
+        send_type = #{sendType,jdbcType=TINYINT},
+      </if>
+      <if test="templateCode != null">
+        template_code = #{templateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pushTime != null">
+        push_time = #{pushTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="jumpNo != null">
+        jump_no = #{jumpNo,jdbcType=INTEGER},
+      </if>
+      <if test="jumpId != null">
+        jump_id = #{jumpId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUserPhone != null">
+        target_user_phone = #{targetUserPhone,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    update msg_mass_send
+    set send_type = #{sendType,jdbcType=TINYINT},
+      template_code = #{templateCode,jdbcType=VARCHAR},
+      push_time = #{pushTime,jdbcType=TIMESTAMP},
+      url = #{url,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      jump_no = #{jumpNo,jdbcType=INTEGER},
+      jump_id = #{jumpId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      target_user_phone = #{targetUserPhone,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    update msg_mass_send
+    set send_type = #{sendType,jdbcType=TINYINT},
+      template_code = #{templateCode,jdbcType=VARCHAR},
+      push_time = #{pushTime,jdbcType=TIMESTAMP},
+      url = #{url,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      jump_no = #{jumpNo,jdbcType=INTEGER},
+      jump_id = #{jumpId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="send_type" jdbcType="TINYINT" property="sendType" />
+    <result column="template_code" jdbcType="VARCHAR" property="templateCode" />
+    <result column="push_time" jdbcType="TIMESTAMP" property="pushTime" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="jump_no" jdbcType="INTEGER" property="jumpNo" />
+    <result column="jump_id" jdbcType="INTEGER" property="jumpId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    <result column="target_user_phone" jdbcType="LONGVARCHAR" property="targetUserPhone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, send_type, template_code, push_time, url, type, jump_no, jump_id, create_time, 
+    update_time, version, remark
+  </sql>
+  <sql id="Blob_Column_List">
+    target_user_phone
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_mass_send
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from msg_mass_send
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    insert into msg_mass_send (id, send_type, template_code, 
+      push_time, url, type, 
+      jump_no, jump_id, create_time, 
+      update_time, version, remark, 
+      target_user_phone)
+    values (#{id,jdbcType=BIGINT}, #{sendType,jdbcType=TINYINT}, #{templateCode,jdbcType=VARCHAR}, 
+      #{pushTime,jdbcType=TIMESTAMP}, #{url,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, 
+      #{jumpNo,jdbcType=INTEGER}, #{jumpId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{targetUserPhone,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    insert into msg_mass_send
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sendType != null">
+        send_type,
+      </if>
+      <if test="templateCode != null">
+        template_code,
+      </if>
+      <if test="pushTime != null">
+        push_time,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="jumpNo != null">
+        jump_no,
+      </if>
+      <if test="jumpId != null">
+        jump_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="targetUserPhone != null">
+        target_user_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sendType != null">
+        #{sendType,jdbcType=TINYINT},
+      </if>
+      <if test="templateCode != null">
+        #{templateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pushTime != null">
+        #{pushTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="jumpNo != null">
+        #{jumpNo,jdbcType=INTEGER},
+      </if>
+      <if test="jumpId != null">
+        #{jumpId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUserPhone != null">
+        #{targetUserPhone,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    update msg_mass_send
+    <set>
+      <if test="sendType != null">
+        send_type = #{sendType,jdbcType=TINYINT},
+      </if>
+      <if test="templateCode != null">
+        template_code = #{templateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pushTime != null">
+        push_time = #{pushTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="jumpNo != null">
+        jump_no = #{jumpNo,jdbcType=INTEGER},
+      </if>
+      <if test="jumpId != null">
+        jump_id = #{jumpId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="targetUserPhone != null">
+        target_user_phone = #{targetUserPhone,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    update msg_mass_send
+    set send_type = #{sendType,jdbcType=TINYINT},
+      template_code = #{templateCode,jdbcType=VARCHAR},
+      push_time = #{pushTime,jdbcType=TIMESTAMP},
+      url = #{url,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      jump_no = #{jumpNo,jdbcType=INTEGER},
+      jump_id = #{jumpId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      target_user_phone = #{targetUserPhone,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiancang.qcshop.msg.config.model.MsgMassSend">
+    update msg_mass_send
+    set send_type = #{sendType,jdbcType=TINYINT},
+      template_code = #{templateCode,jdbcType=VARCHAR},
+      push_time = #{pushTime,jdbcType=TIMESTAMP},
+      url = #{url,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      jump_no = #{jumpNo,jdbcType=INTEGER},
+      jump_id = #{jumpId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
