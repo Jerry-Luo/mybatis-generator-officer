@@ -8,8 +8,10 @@ import java.util.logging.Logger;
 public class JDBCTest {
     public static void main(String[] args) throws SQLException {
 
-        Connection conn = DriverManager.getConnection("jdbc:mysql://dcdbt-qn07qqr4.sql.tencentcdb.com:7/qc_credits?useSSL=false",
-                "test_shop", "dIJ6_pWKTe");
+        Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://dcdbt-qn07qqr4.sql.tencentcdb.com:7/qc_credits?useSSL=false",
+                "test_shop",
+                "dIJ6_pWKTe");
         PreparedStatement ps = conn.prepareStatement("SELECT * FROM user_credits LIMIT 10");
         ResultSet rs = ps.executeQuery();
         ResultSetMetaData meta = rs.getMetaData();
