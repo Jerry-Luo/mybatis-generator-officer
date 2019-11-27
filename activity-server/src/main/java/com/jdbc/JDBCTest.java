@@ -1,9 +1,6 @@
-package com;
+package com.jdbc;
 
-import javax.sql.DataSource;
-import java.io.PrintWriter;
 import java.sql.*;
-import java.util.logging.Logger;
 
 public class JDBCTest {
     public static void main(String[] args) throws SQLException {
