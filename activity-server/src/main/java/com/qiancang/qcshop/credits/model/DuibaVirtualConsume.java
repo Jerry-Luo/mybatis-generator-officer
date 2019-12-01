@@ -15,6 +15,8 @@ public class DuibaVirtualConsume {
 
     private String params;
 
+    private String status;
+
     private Long timestamp;
 
     private String description;
@@ -73,6 +75,14 @@ public class DuibaVirtualConsume {
 
     public void setParams(String params) {
         this.params = params == null ? null : params.trim();
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
     }
 
     public Long getTimestamp() {
